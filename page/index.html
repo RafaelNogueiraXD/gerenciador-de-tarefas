@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário HTML</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="carregaData">
+    <button id="abrirForm">Adicionar</button>
+    <div class="formulario">
+        <h2>Formulário</h2>
+        <form id="meuFormulario">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required><br><br>
+            
+            <label for="desc">Descricao:</label>
+            <!-- <input type="text" id="nome" name="nome" required><br><br> -->
+            <textarea name="desc" id="desc" cols="30" rows="10"></textarea>
+
+            <label for="dataInicial">Data Inicial:</label>
+            <input type="datetime-local" id="dataInicial" name="dataInicial" required><br><br>
+            
+            <label for="dataFinal">Data Final:</label>
+            <input type="datetime-local" id="dataFinal" name="dataFinal" required><br><br>
+    
+            <label for="aceitar">Aceito os termos:</label>
+            <input type="checkbox" id="aceitar" name="aceitar" required><br><br>
+    
+            <input type="submit" value="Enviar">
+        </form>
+    </div>
+    <div>
+        <!-- <label for="searchInput">Pesquisar:</label>
+        <input type="text" id="searchInput" name="searchInput" onInput="procuraDinamica()"> -->
+        <table border="1">
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Data Inicial</th>
+                <th>Data Final</th>
+                <th>Realizado</th>
+                <th>Ações</th>
+            </tr>
+            <tbody id="carregaDados">
+            </tbody>
+        </table>
+    </div>
+    
+    <script src="../index.js"></script>
+    <script>
+        function editaNome(id){
+            var searchTerm = $(`#${id}nome`).val();
+            // var searchTerm = $(this).val();
+            console.log("procurando para editar o item",id)
+            console.log("Valor do campo",searchTerm)
+        }
+
+    </script>
+</body>
+
+</html>
