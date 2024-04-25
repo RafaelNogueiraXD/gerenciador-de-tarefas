@@ -47,6 +47,7 @@ function carregaData(){
             }
         });
 }
+
 function editaNome(id){
     var valorCampo = $(`#${id}nome`).val();
     // var valorCampo = $(this).val();
@@ -65,6 +66,25 @@ function editaNome(id){
         }
     });
 }
+function editaDescricao(id){
+    var valorCampo = $(`#${id}Descricao`).val();
+    // var valorCampo = $(this).val();
+    console.log("procurando para editar o item",id)
+    console.log("Valor do campo",valorCampo)
+    $.ajax({
+        type: 'POST',
+        url: 'http://localhost:5000/editarDescricao',
+        contentType: 'application/json',
+        data: JSON.stringify({ id: id, Descricao: valorCampo }),
+        success: function(response) {00
+                
+        },
+        error: function(){
+            alert("nao pode alterar")
+        }
+    });
+}
+
 function removeData(id){
     console.log(id)
     $.ajax({
@@ -82,6 +102,7 @@ function removeData(id){
         
     });
 }
+
 function editDinamic(id){
     var nomeCell = $(`#${id} td:eq(0)`); 
     var nomeAtual = nomeCell.text(); 
@@ -103,6 +124,7 @@ function editDinamic(id){
     actions.empty().append(btn1);
     actions.append(btn2);
 }
+
 function editData(id) {
     var elemento = responseData.find(item => item.id === id);
 
