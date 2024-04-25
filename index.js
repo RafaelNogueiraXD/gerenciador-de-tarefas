@@ -256,84 +256,6 @@ function removeData(id){
     });
 }
 
-// function editDinamic(id){
-//     var nomeCell = $(`#${id} td:eq(0)`); 
-//     var nomeAtual = nomeCell.text(); 
-//     var inputNome = $(`<input type="text" name="nome" id="${id}nome"  >`).val(nomeAtual); 
-//     var descCell = $(`#${id} td:eq(1)`);
-//     var descAtual = descCell.text(); 
-//     var inputDesc = $(`<textarea name="descricao" id="${id}descricao"  >`).val(descAtual); 
-//     var dataCell = $(`#${id} td:eq(2)`);
-//     var dataAtual = dataCell.text()
-//     var inputdataInit = $(`<input type="text" class="form-control" id="${id}dataInicial" name="dataInicial" required>`).val(dataAtual)
-//     var dataFCell = $(`#${id} td:eq(3)`);
-//     var dataFAtual = dataFCell.text()
-//     var inputdataFinal = $(`<input type="text" class="form-control" id="${id}dataFinal" name="dataFinal" required>`).val(dataFAtual)
-//     nomeCell.empty().append(inputNome);
-//     descCell.empty().append(inputDesc);
-//     dataCell.empty().append(inputdataInit);
-//     dataFCell.empty().append(inputdataFinal);
-//     var actions = $(`#${id} td:eq(5)`);
-//     var btn1 = $(`<button type="button" onclick="carregaData()" class="btn btn-outline-danger">
-//     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-//         <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
-//         </svg>
-//     </button>`); 
-//     var btn2 = $(`<button type="button" class="btn btn-outline-success" onclick="editaNome(${id})">
-//     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-//         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-//     </svg>
-//     </button>`);
-//     actions.empty().append(btn1);
-//     actions.append(btn2);
-// }
-
-// function editData(id) {
-//     var elemento = responseData.find(item => item.id === id);
-
-    
-//     var form = $('<form>');
-//     var coluna = $('<td>dsa</td>');
-//     $(`#${id}`).append(form);
-
-//     var nomeCell = $(`#${id} td:eq(0)`); 
-//     var nomeAtual = nomeCell.text(); 
-//     var inputNome = $('<input type="text" name="nome">').val(nomeAtual); 
-//     form.append(inputNome);
-
-//     var descCell = $(`#${id} td:eq(1)`); 
-//     var descAtual = descCell.text(); 
-//     var inputdesc = $('<textarea name="descricao"></textarea>').val(descAtual); 
-//     form.append(inputdesc);
-
-//     var dataInitCell = $(`#${id} td:eq(2)`); 
-//     var dataInitAtual = dataInitCell.text(); 
-//     var inputdataInit = $('<input type="datetime" name="data_inicial">').val(dataInitAtual); 
-//     form.append(inputdataInit);
-
-//     var dateFinalCell = $(`#${id} td:eq(3)`); 
-//     var dateFinalAtual = dateFinalCell.text(); 
-//     var inputdateFinal = $('<input type="datetime" name="data_final">').val(dateFinalAtual); 
-//     form.append(inputdateFinal);
-
-//     var inputId = $('<input type="hidden" name="id">').val(id);
-//     form.append(inputId);
-
-//     var actions = $(`#${id} td:eq(5)`);
-//     var btn1 = $(`<button type="button" onclick="carregaData()" class="btn btn-outline-danger">
-//     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
-//         <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
-//         </svg>
-//     </button>`); 
-//     var btn2 = $(`<button type="button" class="btn btn-outline-success">
-//     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-//         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-//     </svg>
-//     </button>`);
-//     actions.empty().append(btn1);
-//     actions.append(btn2);
-// }
-
 
 function realizaTarefa(id){
     var elemento = responseData.find(item => item.id === id);
@@ -378,6 +300,38 @@ $(document).ready(function() {
             data: formData,
             success: function (response) {
                 carregaCategoria();
+            },
+            error: function () {
+                alert('Ocorreu um erro ao enviar o formulário.');
+            }
+        });
+    });
+    $('#formEditCategoria').submit(function (event) {
+        event.preventDefault(); 
+        var formDataArray = $(this).serialize(); 
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:5000/editarCategoria',
+            data: formDataArray,
+            success: function (response) {
+                alert('editado com sucesso')
+               
+            },
+            error: function () {
+                alert('Ocorreu um erro ao enviar o formulário.');
+            }
+        });
+    });
+    $('#formDeleta').submit(function (event) {
+        event.preventDefault(); 
+        var formDataArray = $(this).serialize(); 
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:5000/deletarCategoria',
+            data: formDataArray,
+            success: function (response) {
+                alert('deletado com sucesso')
+               
             },
             error: function () {
                 alert('Ocorreu um erro ao enviar o formulário.');

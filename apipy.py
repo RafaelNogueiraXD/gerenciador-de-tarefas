@@ -82,6 +82,8 @@ def realizaTarefa():
 def pegaCategorias():
     dicionario = selectWithDicionaryCategory()
     return jsonify(dicionario)
+
+
 @app.route('/cadastraCategoria', methods=['POST'])
 def cadastraCategoria():
     print("Dados do formulário:", request.form)
@@ -89,8 +91,17 @@ def cadastraCategoria():
 
     return jsonify({'success': True})
 # 
+@app.route('/editarCategoria', methods=['POST'])
+def editarCategoria():
 
-    
+    update("categoria",f"nome='{request.form['nomeEditado']}' ",f"where nome='{request.form['nomeAtual']}'")
+    return jsonify({'success': True})
+
+@app.route('/deletarCategoria', methods=['POST'])
+def deletaCategoria():
+    delete("categoria", f"where nome='{request.form['nome']}'")
+    return jsonify({'success': True})
+
 
 
 

@@ -102,14 +102,68 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-              <form id="formCategoria">
-                <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="nome">
-                  <label for="floatingInput">Nome: </label>
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    Cadastrar
+                  </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                  <div class="accordion-body">
+                    <form id="formCategoria">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" name="nome">
+                        <label for="floatingInput">Nome </label>
+                      </div>
+      
+                      <button class="btn btn-primary" type="submit">cadastrar</button>
+                    </form>
+                  </div>
                 </div>
-                
-                <button class="btn btn-primary" type="submit">cadastrar</button>
-              </form>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                    Editar
+                  </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                  <div class="accordion-body">
+                    <form id="formEditCategoria">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="nomeAtual" placeholder="name@example.com" name="nomeAtual">
+                        <label for="floatingInput">Nome atual</label>
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="nomeEditado" placeholder="name@example.com" name="nomeEditado">
+                        <label for="floatingInput">Novo nome</label>
+                      </div>
+                      <button class="btn btn-primary" type="submit">cadastrar</button>
+                    </form>
+                    </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                    Remover
+                  </button>
+                </h2>
+                <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                  <div class="accordion-body">
+                    <form id="formDeleta">
+                      <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="deletar" placeholder="name@example.com" name="nome">
+                        <label for="floatingInput">Nome </label>
+                      </div>
+                      <button class="btn btn-primary" type="submit">Remover</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
           </div>
           <div class="modal-footer">
             <button class="btn btn-primary" data-bs-target="#staticBackdrop" data-bs-toggle="modal">Voltar ao Cadastro de tarefas</button>
