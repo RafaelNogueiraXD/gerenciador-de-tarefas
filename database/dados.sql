@@ -9,6 +9,9 @@ CREATE TABLE `testedb`.`lista` (
   `realizado` TINYINT NOT NULL,
   PRIMARY KEY (`idlista`)
 );
+ALTER TABLE `testedb`.`lista` 
+CHANGE COLUMN `idlista` `idlista` INT(11) NOT NULL AUTO_INCREMENT ;
+
 INSERT INTO `testedb`.`lista` (`idlista`, `nome`, `descricao`, `data_inicio`, `data_final`, `realizado`)
 VALUES ('5', 'Tarefa importante', 'Concluir relatório mensal', '2024-04-21 10:00:00', '2024-04-21 17:00:00', '0');
 
