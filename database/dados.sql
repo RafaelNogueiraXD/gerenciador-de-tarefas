@@ -7,8 +7,17 @@ CREATE TABLE `testedb`.`lista` (
   `data_inicio` DATETIME NOT NULL,
   `data_final` DATETIME NOT NULL,
   `realizado` TINYINT NOT NULL,
+  `prioridade` INT NOT NULL,
   PRIMARY KEY (`idlista`)
 );
+UPDATE `testedb`.`lista` SET `prioridade` = '1' WHERE (`idlista` = '1');
+UPDATE `testedb`.`lista` SET `prioridade` = '2' WHERE (`idlista` = '7');
+UPDATE `testedb`.`lista` SET `prioridade` = '3' WHERE (`idlista` = '14');
+UPDATE `testedb`.`lista` SET `prioridade` = '2' WHERE (`idlista` = '10');
+UPDATE `testedb`.`lista` SET `prioridade` = '1' WHERE (`idlista` = '16');
+
+ALTER TABLE `testedb`.`lista` 
+ADD COLUMN `categoriaID` INT NULL AFTER `realizado`;
 ALTER TABLE `testedb`.`lista` 
 CHANGE COLUMN `idlista` `idlista` INT(11) NOT NULL AUTO_INCREMENT ;
 CREATE TABLE `testedb`.`categoria` (

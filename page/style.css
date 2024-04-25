@@ -66,3 +66,11 @@ input[type="submit"]:hover {
     background-color: #007bff;
     color: #fff;
 }
+
+.checkbox-label {
+   font-size: 50px; /* Adjust the font size as needed */
+   width: 100px;
+   height: 100px;
+   /* padding: 20px; */
+   
+}

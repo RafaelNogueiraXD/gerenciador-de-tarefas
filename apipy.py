@@ -3,10 +3,29 @@ from flask_cors import CORS
 from bd import *
 app = Flask(__name__)
 CORS(app) 
+# @app.route('/loadData2',methods=['GET'])
+# def loadData2():
+#     bdResponse = selectWithDicionary()
+#     return jsonify(bdResponse)
 @app.route('/loadData',methods=['GET'])
 def loadData():
     bdResponse = selectWithDicionary()
     return jsonify(bdResponse)
+@app.route('/loadDataByDataFinal',methods=['GET'])
+def loadDataByDataFinal():
+    bdResponse = orderByDataFinal()
+    return jsonify(bdResponse)
+
+@app.route('/loadDataByPrioridade',methods=['GET'])
+def loadDataByPrioridade():
+    bdResponse = orderByPrioridade()
+    return jsonify(bdResponse)
+
+@app.route('/loadDataByCategoria',methods=['GET'])
+def loadDataByCategoria():
+    bdResponse = orderByCategoria()
+    return jsonify(bdResponse)
+
 
 @app.route('/processar_formulario', methods=['POST'])
 def processar_formulario():
@@ -14,20 +33,23 @@ def processar_formulario():
     desc = request.form['desc']
     dataInicial = request.form['dataInicial']
     dataFinal = request.form['dataFinal']
+    categorias = request.form['categoria']
+    prioridade = request.form['prioridade']
+    print(request.form)
     print(dataInicial)
     print(type(dataInicial))
     dataInicial = dataInicial.replace("T"," ")
     print(dataInicial)
     dataFinal = dataFinal.replace("T",' ')
-    # aceitar = request.form.get('aceitar')
-    aceitar = 0
-    print(aceitar)
+    realizados = 0
+    print(realizados)
     insertAll(nome=nome, 
               descricao=desc, 
               data_inicial=dataInicial, 
               data_final=dataFinal,
-              realizado=aceitar)
-    # resposta = {'mensagem': 'Formulário recebido com sucesso!', 'nome': nome, 'data': data, 'aceitar': aceitar}
+              realizado=realizados,
+              categorias=categorias,
+              prioridade=prioridade)
     return jsonify(1)
 
 @app.route('/deletar', methods=['POST'])
@@ -37,11 +59,8 @@ def deletar():
     dados = request.form.to_dict() 
     id2 = request.json['id']  
     id = dados.get('id') 
-    # print(id2)
-    # print(type(id2))
     delete("lista", f"where idlista={id2}")
     response = jsonify({'success': True})
-    # response.headers.add('Access-Control-Allow-Origin', 'http://localhost:5000/')
     return response
 
 @app.route('/editarNome', methods=['POST'])
@@ -55,10 +74,19 @@ def editarInfo():
 def realizaTarefa():
     id = request.json['id']
     realiza = request.json['realizado']
-    # print(id, realiza)
     update("lista",f"realizado ='{realiza}'", f"where idlista={id}")
     return jsonify({'success': True})
 
+@app.route('/mostraCategorias')
+def pegaCategorias():
+    dicionario = selectWithDicionaryCategory()
+    return jsonify(dicionario)
+@app.route('/cadastraCategoria', methods=['POST'])
+def cadastraCategoria():
+    print("Dados do formulário:", request.form)
+    insert('categoria',f"default, '{request.form['nome']}'")
+
+    return jsonify({'success': True})
 # 
 
     

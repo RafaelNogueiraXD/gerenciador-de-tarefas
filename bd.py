@@ -65,9 +65,7 @@ def showData():
             done = "Sim"
         msg = f"id: {field[0]} Nome: {field[1]}, desc:{field[2]}, data inicial:{field[3]}, data final:{field[4]}, realizado: {done}"
         print(msg)
-
-def selectWithDicionary():
-    resultado = select("*", "lista", "")
+def dicionaryTransform(resultado):
     dicionary = []
     for field in resultado: 
         partDicionary = { 
@@ -77,38 +75,60 @@ def selectWithDicionary():
             'data_inicial' : field[3],
             'data_final' : field[4],
             'realizado' : field[5],
+            'categoria' : field[6],
+            'prioridade' : field[7],
         }
-        # print(dicionary)
         dicionary.append(partDicionary)
-    # print(dicionary)
     return dicionary
+    
 
-def insertAll(nome, descricao, data_inicial, data_final,realizado):
+def selectWithDicionary():
+    campos = " idlista,lista.nome,descricao,data_inicio,data_final,realizado,c.nome as categoria_nome,prioridade"
+    
+    resultado = select(f"{campos}", "lista inner join categoria as c on c.idcategoria=lista.categoriaID order by prioridade asc", "")
+    
+    dicionary = []
+    for field in resultado: 
+        partDicionary = { 
+            'id' : field[0],
+            'nome' : field[1],
+            'descricao' : field[2],
+            'data_inicial' : field[3],
+            'data_final' : field[4],
+            'realizado' : field[5],
+            'categoria' : field[6],
+            'prioridade' : field[7],
+        }
+        dicionary.append(partDicionary)
+    return dicionary
+def orderByDataFinal():
+    campos = " idlista,lista.nome,descricao,data_inicio,data_final,realizado,c.nome as categoria_nome,prioridade"
+    resultado = select(f"{campos}", "lista inner join categoria as c on c.idcategoria=lista.categoriaID order by data_final asc", "")
+    return dicionaryTransform(resultado)
+
+def orderByPrioridade():
+    campos = " idlista,lista.nome,descricao,data_inicio,data_final,realizado,c.nome as categoria_nome,prioridade"
+    resultado = select(f"{campos}", "lista inner join categoria as c on c.idcategoria=lista.categoriaID order by prioridade asc", "")
+    return dicionaryTransform(resultado)
+    
+
+def orderByCategoria():
+    campos = " idlista,lista.nome,descricao,data_inicio,data_final,realizado,c.nome as categoria_nome,prioridade"
+    resultado = select(f"{campos}", "lista inner join categoria as c on c.idcategoria=lista.categoriaID order by categoria_nome asc", "")
+    return dicionaryTransform(resultado)
+
+def insertAll(nome, descricao, data_inicial, data_final,realizado,categorias, prioridade):
     if data_inicial == " ":
         data_inicial = datetime.datetime.now()
-    insert("lista", f"default, '{nome}', '{descricao}', '{data_inicial}', '{data_final}', '{realizado}'")
+    insert("lista", f"default, '{nome}', '{descricao}', '{data_inicial}', '{data_final}', '{realizado}', '{categorias}', '{prioridade}'")
 
-def insertCategoria(nome):
-    pass
 def selectWithDicionaryCategory():
-    pass
-
-
-# Exemplo de uso da classe
-# if __name__ == "_main_":
-
-
-# resultado = select("*", "lista", "")
-# print(resultado)
-# insertAll("lista final", "teste", " ","2024-04-22 15:30:00",0)
-# showData()
-# close_connection()
-
-    # Fechando a conexão com o banco de dados
-    # Criando uma instância do banco de dados
-    # db = Database(host="localhost", user="root", password="", database="whatsdb")
-
-    # Realizando operações de CRUD
-    # db.insert("tabela", "valores")
-    # db.update("tabela", "edicao", "condicao")
-    # db.delete("tabela", "condicao")
+    resultado = select("*", "categoria", "")
+    dicionary = []
+    for field in resultado: 
+        partDicionary = { 
+            'id' : field[0],
+            'nome' : field[1],
+        }
+        dicionary.append(partDicionary)
+    return dicionary
