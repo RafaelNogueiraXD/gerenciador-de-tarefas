@@ -4,8 +4,8 @@ CREATE TABLE `testedb`.`lista` (
   `idlista` INT NOT NULL,
   `nome` VARCHAR(255) NOT NULL,
   `descricao` TEXT,
-  `data_inicio` DATETIME NOT NULL,
-  `data_final` DATETIME NOT NULL,
+  `data_inicio` varchar(45) NOT NULL,
+  `data_final` varchar(45) NOT NULL,
   `realizado` TINYINT NOT NULL,
   `prioridade` INT NOT NULL,
   PRIMARY KEY (`idlista`)
@@ -52,3 +52,9 @@ VALUES ('9', 'Estudo', 'Preparação para exame de certificação', '2024-04-26 
 -- Dados 6
 INSERT INTO `testedb`.`lista` (`idlista`, `nome`, `descricao`, `data_inicio`, `data_final`, `realizado`)
 VALUES ('10', 'Aniversário', 'Comprar presente para amigo', '2024-04-27 12:00:00', '2024-04-27 13:30:00', '0');
+
+SELECT idlista,lista.nome,descricao,data_inicio,data_final,realizado,c.nome as categoria_nome,prioridade from 
+lista inner join categoria as c on c.idcategoria=lista.categoriaID order by prioridade asc; 
+
+SELECT idlista,lista.nome,descricao,data_inicio,data_final,realizado,c.nome as categoria_nome,prioridade from 
+lista inner join categoria as c on c.idcategoria=lista.categoriaID order by data_final asc; 
