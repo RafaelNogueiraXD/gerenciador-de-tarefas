@@ -53,15 +53,11 @@ function editaModal(id){
 
     var dataPCell = $(`#${id} td:eq(5)`);
     var prioridade_atual = dataPCell.text()
-    var inputPrioridade = $(`<input type="number" min=0 class="form-control" id="${id}categoria" name="prioridade" required>`).val(prioridade_atual)
+    var inputPrioridade = $(`<input type="number" min=0 class="form-control" id="${id}prioridades" name="prioridades" required>`).val(prioridade_atual)
     $(`#prioridades`).empty().append("<b>Prioridade: </b>",inputPrioridade);
 
-    var dataPCell = $(`#${id} td:eq(4)`);
-    var prioridade_atual = dataPCell.text()
-    var inputPrioridade = $(`<input type="number" min=0 class="form-control" id="${id}categoria" name="prioridade" required>`).val(prioridade_atual)
-    $(`#prioridades`).empty().append("<b>Prioridade: </b>",inputPrioridade);
 
-    var btn2 = $(`<button type="button" class="btn btn-outline-success" onclick="editaNome(${id})">
+    var btn2 = $(`<button type="button" class="btn btn-outline-success"  data-bs-dismiss="modal"  onclick="editaNome(${id})">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
     </svg>
@@ -223,6 +219,8 @@ function editaNome(id){
     var descCamp = $(`#${id}descricao`).val();
     var dataInit = $(`#${id}dataInicial`).val();
     var dataFinal = $(`#${id}dataFinal`).val();
+    var prioridade = $(`#${id}prioridades`).val();
+    console.log("prioridade:", prioridade)
     console.log("data inicial:",dataInit)
     console.log("procurando para editar o item",id)
     console.log("Valor do campo",nomeCamp)
@@ -230,7 +228,7 @@ function editaNome(id){
         type: 'POST',
         url: 'http://localhost:5000/editarNome',
         contentType: 'application/json',
-        data: JSON.stringify({ id: id, nome: nomeCamp, desc: descCamp, dataInit:dataInit, dataFinal: dataFinal}),
+        data: JSON.stringify({ id: id, nome: nomeCamp, desc: descCamp, dataInit:dataInit, dataFinal: dataFinal, prioridade:prioridade}),
         success: function(response) {
                 carregaData()
         },
