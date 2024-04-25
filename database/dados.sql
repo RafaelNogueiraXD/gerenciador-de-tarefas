@@ -11,6 +11,16 @@ CREATE TABLE `testedb`.`lista` (
 );
 ALTER TABLE `testedb`.`lista` 
 CHANGE COLUMN `idlista` `idlista` INT(11) NOT NULL AUTO_INCREMENT ;
+CREATE TABLE `testedb`.`categoria` (
+  `idcategoria` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NULL,
+  PRIMARY KEY (`idcategoria`));
+
+INSERT INTO `testedb`.`categoria` (`idcategoria`, `nome`) VALUES ('1', 'escola');
+INSERT INTO `testedb`.`categoria` (`idcategoria`, `nome`) VALUES ('2', 'medico');
+INSERT INTO `testedb`.`categoria` (`idcategoria`, `nome`) VALUES ('3', 'lazer');
+
+
 
 INSERT INTO `testedb`.`lista` (`idlista`, `nome`, `descricao`, `data_inicio`, `data_final`, `realizado`)
 VALUES ('5', 'Tarefa importante', 'Concluir relatório mensal', '2024-04-21 10:00:00', '2024-04-21 17:00:00', '0');

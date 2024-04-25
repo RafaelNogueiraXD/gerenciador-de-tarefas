@@ -88,7 +88,10 @@ def insertAll(nome, descricao, data_inicial, data_final,realizado):
         data_inicial = datetime.datetime.now()
     insert("lista", f"default, '{nome}', '{descricao}', '{data_inicial}', '{data_final}', '{realizado}'")
 
-
+def insertCategoria(nome):
+    pass
+def selectWithDicionaryCategory():
+    pass
 
 
 # Exemplo de uso da classe
