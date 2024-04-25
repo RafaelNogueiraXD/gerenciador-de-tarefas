@@ -1,4 +1,5 @@
 let responseData = []; // Variável global para armazenar os dados da resposta
+
 function carregaData(){
     $.ajax({
             type: 'GET',
@@ -46,6 +47,24 @@ function carregaData(){
             }
         });
 }
+function editaNome(id){
+    var valorCampo = $(`#${id}nome`).val();
+    // var valorCampo = $(this).val();
+    console.log("procurando para editar o item",id)
+    console.log("Valor do campo",valorCampo)
+    $.ajax({
+        type: 'POST',
+        url: 'http://localhost:5000/editarNome',
+        contentType: 'application/json',
+        data: JSON.stringify({ id: id, nome: valorCampo }),
+        success: function(response) {
+                
+        },
+        error: function(){
+            alert("nao pode alterar")
+        }
+    });
+}
 function removeData(id){
     console.log(id)
     $.ajax({
@@ -62,9 +81,6 @@ function removeData(id){
         }
         
     });
-}
-function teste(){
-    console.log("ativou uu uu ")
 }
 function editDinamic(id){
     var nomeCell = $(`#${id} td:eq(0)`); 

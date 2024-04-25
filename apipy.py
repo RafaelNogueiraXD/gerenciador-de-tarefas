@@ -41,7 +41,9 @@ def deletar():
 
 @app.route('/editarNome', methods=['POST'])
 def editarInfo():
-    print("Dados do formulário:", request.form)
+    print("Dados do formulário:", request.json)
+    update("lista",f"nome ='{request.json['nome']}'", f"where idlista={request.json['id']}")
+
     return jsonify({'success': True})
 
 @app.route('/realizaTarefa', methods=['POST'])
